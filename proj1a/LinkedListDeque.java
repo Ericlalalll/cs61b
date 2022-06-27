@@ -18,7 +18,7 @@ public class LinkedListDeque<T> {
         }
     } // end of the inner class
 
-    private Node sentinel; // sentinel node stored by deque.
+    private final Node sentinel; // sentinel node stored by deque.
     private int size;
 
     /* Invarits:
@@ -33,7 +33,7 @@ public class LinkedListDeque<T> {
         size = 0;
     }
 
-    public boolean isEmptey() {
+    public boolean isEmpty() {
         return size == 0;
     }
 
@@ -48,7 +48,7 @@ public class LinkedListDeque<T> {
         size++;
     }
 
-    public void addlast(T item) {
+    public void addLast(T item) {
         Node node = new Node(item, sentinel.prev, sentinel); // based on circular list
         sentinel.prev.next = node;
         sentinel.prev = node;
@@ -108,19 +108,5 @@ public class LinkedListDeque<T> {
             System.out.print(temp.item + " ");
             temp = temp.next;
         }
-    }
-
-    public static void main(String[] args) {
-        LinkedListDeque<Integer> list = new LinkedListDeque<>();
-        list.addFirst(14);
-        list.addlast(18);
-        list.addFirst(10);
-        list.addlast(20);
-        list.removeFirst();
-        list.removeLast();
-        list.addlast(100);
-        list.getRecursive(2);
-        list.printDeque();
-
     }
 }
