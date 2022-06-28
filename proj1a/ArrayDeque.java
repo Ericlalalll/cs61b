@@ -124,30 +124,7 @@ public class ArrayDeque<T> {
         System.out.println();
     }
 
-    public static void main(String[] args) {
 
-        ArrayDeque<Integer> L = new ArrayDeque<>();
-       // L.addFirst(10);
-       // L.addFirst(5);
-        L.addLast(15);
-        L.addLast(20);
-        L.addLast(30);
-        L.addLast(40);
-        L.addLast(50);
-        L.addLast(60);
-        L.addLast(70);
-        L.addLast(80);
-        L.addFirst(5);
-
-
-        System.out.println(L.isEmpty());
-        L.printDeque();
-        System.out.println(L.removeFirst());
-        L.printDeque();
-        System.out.println(L.removeLast());
-        L.printDeque();
-        System.out.println(L.get(1));
-    }
 }
 
 
