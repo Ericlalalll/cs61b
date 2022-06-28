@@ -80,11 +80,11 @@ public class ArrayDeque<T> {
         size++;
     }
 
-    public T getFirst(){
+    private T getFirst(){
         return arr[plusOne(nextFirst)];
     }
 
-    public T getLast(){
+    private T getLast(){
         return arr[minusOne(nextLast)];
     }
 
