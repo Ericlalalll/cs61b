@@ -78,8 +78,7 @@ public class IntListTest {
         assertEquals(IntList.reverse(A), B);
         assertEquals(IntList.reverse(C), null);
 
-
-
     }
+    public void rtate(){
 
 }
