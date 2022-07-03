@@ -1,4 +1,4 @@
-public class ArrayDeque<T> implements Deque<T>{
+public class ArrayDeque<T> implements Deque<T> {
 
     /*
      * this arraylist is based on circular array.
@@ -12,28 +12,28 @@ public class ArrayDeque<T> implements Deque<T>{
     private final int capacity = 8;
 
 
-    public ArrayDeque(){
+    public ArrayDeque() {
         arr = (T[]) new Object[capacity];
         nextFirst = 0;
         nextLast = 1;
         size = 0;
     }
     @Override
-    public int size(){
+    public int size() {
         return size;
     }
     @Override
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return size == 0;
     }
 
     // a helper method to keep track of the index of nextfirst
-    private int minusOne(int index){
-        return (index-1 + arr.length) % arr.length;
+    private int minusOne(int index) {
+        return (index - 1 + arr.length) % arr.length;
     }
 
-    private int plusOne(int index){
-        return (index+1) % arr.length;
+    private int plusOne(int index) {
+        return (index + 1) % arr.length;
     }
 
     private void checksize() {
@@ -51,11 +51,11 @@ public class ArrayDeque<T> implements Deque<T>{
      * 3.copying array always follows the order from the first element to the last element
      * */
     // if the list is full nextlast = nextfirst + 1, traverse elements all from plusone(nextfirst) to minusone(nextlast)
-    private void resize(int capacity){
+    private void resize(int capacity) {
         T[] newarr = (T[]) new Object[capacity];
         int start = plusOne(nextFirst); // satrt is the index of the first real element
         //int end = minusOne(nextLast);
-        for (int i = 0; i < this.size ; i++) {
+        for (int i = 0; i < this.size; i++) {
             newarr[i] = arr[start];
             start = plusOne(start);
         }
@@ -66,7 +66,7 @@ public class ArrayDeque<T> implements Deque<T>{
         arr = newarr;
     }
     @Override
-    public void addFirst(T item){
+    public void addFirst(T item) {
         checksize();
         arr[nextFirst] = item;
         nextFirst = minusOne(nextFirst);
@@ -74,42 +74,42 @@ public class ArrayDeque<T> implements Deque<T>{
     }
 
     @Override
-    public void addLast(T item){
+    public void addLast(T item) {
         checksize();
         arr[nextLast] = item;
         nextLast = plusOne(nextLast);
         size++;
     }
 
-    private T getFirst(){
+    private T getFirst() {
         return arr[plusOne(nextFirst)];
     }
 
-    private T getLast(){
+    private T getLast() {
         return arr[minusOne(nextLast)];
     }
     @Override
-    public T removeFirst(){
+    public T removeFirst() {
         T temp = getFirst();
         nextFirst = plusOne(nextFirst);
-        arr[nextFirst]= null;
+        arr[nextFirst] = null;
         size--;
         checksize();
         return temp;
     }
     @Override
-    public T removeLast(){
+    public T removeLast() {
         T temp = getLast();
         nextLast = minusOne(nextLast);
-        arr[nextLast]= null;
+        arr[nextLast] = null;
         size--;
         checksize();
         return temp;
     }
     @Override
     // Assuming that the input index is in the contex of normal array
-    public T get(int index){
-        if (index >= size){
+    public T get(int index) {
+        if (index >= size) {
             return null;
         }
         int start = plusOne(nextFirst);
@@ -117,10 +117,10 @@ public class ArrayDeque<T> implements Deque<T>{
 
     }
     @Override
-    public void printDeque(){
+    public void printDeque() {
         int temp = plusOne(nextFirst);
-        for (int i = 0; i < size ; i++) {
-            System.out.print(arr[temp] +"  ");
+        for (int i = 0; i < size; i++) {
+            System.out.print(arr[temp] + "  ");
             temp = plusOne(temp);
         }
         System.out.println();

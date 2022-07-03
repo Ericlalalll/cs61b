@@ -12,10 +12,10 @@ public class Palindrome {
         return isPalindromeHelper(d);
     }
 
-    public boolean isPalindromeHelper(Deque d){
+    private boolean isPalindromeHelper(Deque d) {
         if (d.size() <= 1) {
             return true;
-        } else if (d.removeFirst() != d.removeLast()){
+        } else if (d.removeFirst() != d.removeLast()) {
             return false;
         } else {
             return isPalindromeHelper(d);
@@ -26,8 +26,8 @@ public class Palindrome {
         Deque d = wordToDeque(word);
         return isPalindromeHelper(d, cc);
     }
-    public boolean isPalindromeHelper(Deque d, CharacterComparator cc) {
-        if (d.size() <= 1){
+    private boolean isPalindromeHelper(Deque d, CharacterComparator cc) {
+        if (d.size() <= 1) {
             return true;
         } else if (!cc.equalChars((char) d.removeFirst(), (char) d.removeLast())) {
             return false;
