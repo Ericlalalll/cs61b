@@ -52,7 +52,7 @@ public class MazeAStarPath extends MazeExplorer {
         return -1;
         /* You do not have to use this method. */
     }
-
+    
 
     /** Performs an A star search from vertex s. */
     private void astar(int s) {
@@ -63,6 +63,7 @@ public class MazeAStarPath extends MazeExplorer {
         marked[s] = true;
         while (!fringe.isEmpty()) {
             curNode = fringe.poll();
+            book[curNode.v] = true;
             for (int w : maze.adj(curNode.v)) {
                 if (!marked[w]) {
                     marked[w] = true;
