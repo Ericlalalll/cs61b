@@ -48,12 +48,61 @@ public class QuickSort {
             Queue<Item> unsorted, Item pivot,
             Queue<Item> less, Queue<Item> equal, Queue<Item> greater) {
         // Your code here!
+        for (Item tmp : unsorted) {
+            if (tmp.compareTo(pivot) < 0) {
+                less.enqueue(tmp);
+            } else if (tmp.compareTo(pivot) > 0) {
+                greater.enqueue(tmp);
+            } else {
+                equal.enqueue(tmp);
+            }
+        }
     }
 
     /** Returns a Queue that contains the given items sorted from least to greatest. */
     public static <Item extends Comparable> Queue<Item> quickSort(
             Queue<Item> items) {
         // Your code here!
-        return items;
+        if (items.size() <= 1) {
+            return items;
+        }
+
+        Item pivot = getRandomItem(items);
+        Queue<Item> less = new Queue<>();
+        Queue<Item> equal = new Queue<>();
+        Queue<Item> greater = new Queue<>();
+        partition(items, pivot, less, equal, greater);
+        Queue<Item> leftSorted = quickSort(less);
+        Queue<Item> rightSorted = quickSort(greater);
+        return catenate(catenate(leftSorted, equal), rightSorted);
+
+    }
+
+
+
+    public static void main(String[] args) {
+        Queue<String> uni = new Queue<>();
+        uni.enqueue("MIT");
+        uni.enqueue("UCB");
+        uni.enqueue("Standford");
+        uni.enqueue("CMU");
+        uni.enqueue("Princetion");
+        System.out.println("Original queue : " + uni);
+        Queue<String> uniSorted = quickSort(uni);
+        System.out.println("Sorted queue : " + uniSorted);
+        System.out.println(uni.size() == uniSorted.size());
+
+
+
+        Queue<Integer> num = new Queue<>();
+        num.enqueue(5);
+        num.enqueue(9);
+        num.enqueue(3);
+        num.enqueue(7);
+        num.enqueue(12);
+        System.out.println("Original queue : " + num);
+        Queue<Integer> numSorted = quickSort(num);
+        System.out.println("Sorted queue : " + numSorted);
+        System.out.println(num.size() == numSorted.size());
     }
 }
